@@ -34,7 +34,6 @@ describe BikeContainer do
 			expect(lambda {holder.release(bike) }).to raise_error(RuntimeError)
 		end	
 	end
-		
 
 
 	it "should provide the list of available bikes" do
@@ -49,5 +48,11 @@ describe BikeContainer do
 	def fill_holder(holder)
 		holder.capacity.times { holder.dock(Bike.new) }
 	end
+
+	it "should only release a bike when a bike is requested" do
+		expect(lambda {holder.release() }).to raise_error(ArgumentError)
+		expect(lambda {holder.release(fish) }).to raise_error(NameError)
+	end
+
 
 end
