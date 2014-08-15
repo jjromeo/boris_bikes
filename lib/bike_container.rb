@@ -19,6 +19,7 @@ module BikeContainer
 
 	def dock(bike)
 		raise "Holder is full" if full?
+		raise "Only bikes can be docked" if bike.class != Bike
 		bikes << bike
 	end
 
@@ -34,6 +35,7 @@ module BikeContainer
 	def available_bikes
 		bikes.reject {|bike| bike.broken? }
 	end
+
 
 
 end

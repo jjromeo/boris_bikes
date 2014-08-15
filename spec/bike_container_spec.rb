@@ -6,6 +6,7 @@ describe BikeContainer do
 
 	let(:bike) { Bike.new }
 	let(:holder) { ContainerHolder.new }
+	let(:van) {double "van"}
 
 	it "should accept a bike" do 
 		# we expct the holder to have 0 bikes
@@ -29,12 +30,6 @@ describe BikeContainer do
 		expect(holder.bike_count).to eq(0)
 	end
 
-	it "should not release a bike when it's empty" do
-		if holder.bike_count == 0
-			expect(lambda {holder.release(bike) }).to raise_error(RuntimeError)
-		end	
-	end
-
 
 	it "should provide the list of available bikes" do
 		working_bike, broken_bike = Bike.new, Bike.new
@@ -52,6 +47,16 @@ describe BikeContainer do
 	it "should only release a bike when a bike is requested" do
 		expect(lambda {holder.release() }).to raise_error(ArgumentError)
 		expect(lambda {holder.release(fish) }).to raise_error(NameError)
+	end
+
+	it "should only allow bikes to dock" do
+		expect(lambda {holder.dock(van) }).to raise_error(RuntimeError)
+	end
+
+	it "should not release a bike when it's empty" do
+		if holder.bike_count == 0
+			expect(lambda {holder.release(bike) }).to raise_error(RuntimeError)
+		end	
 	end
 
 
