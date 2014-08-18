@@ -44,13 +44,13 @@ describe BikeContainer do
 		holder.capacity.times { holder.dock(Bike.new) }
 	end
 
-	it "should only release a bike when a bike is requested" do
-		expect(lambda {holder.release() }).to raise_error(ArgumentError)
-		expect(lambda {holder.release(fish) }).to raise_error(NameError)
-	end
 
 	it "should only allow bikes to dock" do
-		expect(lambda {holder.dock(van) }).to raise_error(RuntimeError)
+		expect(-> {holder.dock(van) }).to raise_error(RuntimeError)
+	end
+
+	it "should warn the user if an argument is not passed to 'dock'" do 
+		expect( -> {holder.dock}).to raise_error "Please select a bike to dock"
 	end
 
 	it "should not release a bike when it's empty" do
@@ -58,6 +58,13 @@ describe BikeContainer do
 			expect(lambda {holder.release(bike) }).to raise_error(RuntimeError)
 		end	
 	end
+
+	it "should warn the user if an argument is not passed to 'release'" do 
+		expect(-> {holder.release}).to raise_error "Please select a bike to release"
+	end
+
+
+
 
 
 end
