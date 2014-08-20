@@ -13,8 +13,19 @@ class Van
 	end
 
 
+	def collect_broken_bikes_from(station)
+		station.broken_bikes.each do |bike|
+		 bikes << bike
+		 station.release(bike)
+		end
+	end
 
-
+	def deliver_bikes_to(garage)
+		broken_bikes.each do |bike|
+		bikes << bike
+		release(bike)
+		end
+	end
 
 
 end
