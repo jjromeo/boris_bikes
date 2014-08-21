@@ -6,7 +6,7 @@ describe Van do
 	let(:bike) {double :bike, broken?: false}
 	let(:broken_bike) {double :bike, broken?: true}
 	let(:station) {double :station, release: broken_bike, dock: bike, broken_bikes: [broken_bike]}
-	let(:garage) {double :garage}
+	let(:garage) {double :garage, release: bike, bikes: [bike]}
 
 
 	it "should allow default capacity setting on initialising" do
@@ -24,5 +24,12 @@ describe Van do
 		van.deliver_bikes_to(garage)
 		expect(van.broken_bike_count).to eq 0
 	end
+
+	it "should be able to pick up bikes from the garage" do 
+		expect(van.bike_count).to eq 0
+		van.pick_up_bikes_from(garage)
+		expect(van.bike_count).to eq 1
+	end
+
 
 end
