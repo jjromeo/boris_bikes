@@ -22,14 +22,14 @@ class Van
 
 	def deliver_bikes_to(garage)
 		broken_bikes.each do |bike|
-		bikes << bike
+		garage.bikes << bike
 		release(bike)
 		end
 	end
 
 	def pick_up_bikes_from(garage)
 		garage.bikes.each do |bike|
-		bikes << bike 
+		self.bikes << bike 
 		garage.release(bike)
 		end
 	end

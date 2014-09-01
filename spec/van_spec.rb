@@ -2,7 +2,7 @@ require 'van'
 
 describe Van do
 
-	let(:van) {Van.new(:capacity => 123)}
+	let(:van) {Van.new(:capacity => 20)}
 	let(:bike) {double :bike, broken?: false}
 	let(:broken_bike) {double :bike, broken?: true}
 	let(:station) {double :station, release: broken_bike, dock: bike, broken_bikes: [broken_bike]}
@@ -10,7 +10,7 @@ describe Van do
 
 
 	it "should allow default capacity setting on initialising" do
-		expect(van.capacity).to eq(123)
+		expect(van.capacity).to eq(20)
 	end
 
 	it "should be able to collect broken bikes" do 
