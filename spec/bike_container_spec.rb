@@ -4,16 +4,13 @@ class ContainerHolder; include BikeContainer; end
 
 describe BikeContainer do 
 
-	let(:bike) { Bike.new }
+	let(:bike) { double "bike", class: Bike}
 	let(:holder) { ContainerHolder.new }
 	let(:van) {double "van"}
 
 	it "should accept a bike" do 
-		# we expct the holder to have 0 bikes
 		expect(holder.bike_count).to eq(0)
-		# let's dock a bike into the holder
 		holder.dock(bike)
-		# now we expect the holder to have 1 bike
 		expect(holder.bike_count).to eq(1)
 	end
 

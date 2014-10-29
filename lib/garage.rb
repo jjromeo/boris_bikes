@@ -4,7 +4,7 @@ class Garage; include BikeContainer
 
 
 	def initialize(options = {})
-		self.capacity = options.fetch(:capacity, capacity)
+		@capacity = options[:capacity]
 	end
 
 	def dock(bike = nil)

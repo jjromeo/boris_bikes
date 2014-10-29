@@ -5,11 +5,7 @@ class Van
 	include BikeContainer
 
 	def initialize(options = {})
-		# self.capacity is calling the capacity=() method
-		# (note the equals sign) designed in BikeContainer
-		# capacity (the second argument to fetch()) is calling
-		# the capacity() method in BikeContainer
-		self.capacity = options.fetch(:capacity, capacity)
+		@capacity = options[:capacity]
 	end
 
 
@@ -22,14 +18,14 @@ class Van
 
 	def deliver_bikes_to(garage)
 		broken_bikes.each do |bike|
-		garage.bikes << bike
+		garage.dock bike
 		release(bike)
 		end
 	end
 
 	def pick_up_bikes_from(garage)
 		garage.bikes.each do |bike|
-		self.bikes << bike 
+		@bikes << bike 
 		garage.release(bike)
 		end
 	end

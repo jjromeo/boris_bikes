@@ -6,7 +6,7 @@ describe Van do
 	let(:bike) {double :bike, broken?: false}
 	let(:broken_bike) {double :bike, broken?: true}
 	let(:station) {double :station, release: broken_bike, dock: bike, broken_bikes: [broken_bike]}
-	let(:garage) {double :garage, release: bike, bikes: [bike]}
+	let(:garage) {double :garage, release: bike, bikes: [bike], dock: nil}
 
 
 	it "should allow default capacity setting on initialising" do
