@@ -12,7 +12,7 @@ let(:broken_bike) {double :broken_bike, broken?: true, class: Bike, fix!: false}
 	end
 
 	it "should fix a broken bike which enters it" do
+		expect(broken_bike).to receive(:fix!)
 		garage.dock(broken_bike)
-		expect(broken_bike).not_to be_broken
 	end
 end
